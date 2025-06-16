@@ -53,6 +53,11 @@ const password = ref('')
       message: `${name.value} salvo com sucesso.`,
       type: 'positive'
     })
+    name.value = ''
+    bornDate.value = ''
+    gender.value = ''
+    password.value = ''
+
   }
 }
 </script>
