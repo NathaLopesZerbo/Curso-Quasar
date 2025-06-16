@@ -1,37 +1,29 @@
 <template>
-
-  <q-input :type="isPsw ? 'password' : 'text'" v-model="value">
+  <q-input
+    :type="isPsw ? 'password' : 'text'"
+    v-model="value"
+  >
     <template v-slot:append> 
-      <q-icon :name=" isPsw ? 'visibility' : 'visibility_off'" @click="isPsw = !isPsw"> 
-      </q-icon>
+      <q-icon
+        :name="isPsw ? 'visibility' : 'visibility_off'"
+        @click="isPsw = !isPsw"
+        class="cursor-pointer"
+      />
     </template>
   </q-input>
-
 </template>
 
-<script  lang="ts">
-import { computed, defineComponent, ref } from 'vue';
-  export default defineComponent({
-    name: 'PasswordInput',
-    props: {
-      modelValue: {
-        type:String,
-        required: true
-      }
-    },
-    setup(props, {emit}) {
-      const value = computed({
-        get: () => props.modelValue,
-        set: value => emit('update:modelValue', value)
-      })
+<script setup lang="ts">
+import { ref, computed, defineProps, defineEmits } from 'vue'
 
-      const isPsw = ref<boolean>(true)
+const props = defineProps<{ modelValue: string }>()
 
-      return{
-        value,
-        isPsw
-      }
-    }
-  })
-  
+const emit = defineEmits(['update:modelValue'])
+
+const value = computed({
+  get: () => props.modelValue,
+  set: (val: string) => emit('update:modelValue', val)
+})
+
+const isPsw = ref(true)
 </script>

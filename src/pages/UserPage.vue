@@ -12,60 +12,47 @@
           </q-icon>
         </template>
       </q-input>
-      <q-select v-model="gender" label="Gênero" filled :options="[
-          'Masculino',
-          'Feminino'
-      ]"> 
-      </q-select>
+
+      <q-select
+        v-model="gender"
+        label="Gênero"
+        filled
+        :options="['Masculino', 'Feminino']"
+      />
+
       <PasswordInput v-model="password" />
-      <q-checkbox v-model="term" label="Aceito os termos de uso"/>
-      <q-btn label="Salvar" class="bg-blue-13 text-white" @click="onSave"/>
+
+      <q-checkbox v-model="term" label="Aceito os termos de uso" />
+
+      <q-btn label="Salvar" class="bg-blue-13 text-white" @click="onSave" />
     </q-form>
   </q-page>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+import { ref } from 'vue'
 import { useQuasar } from 'quasar'
 import PasswordInput from 'src/components/PasswordInput.vue'
-import { defineComponent, ref } from 'vue'
 
-export default defineComponent({
-  name: 'UserPage',
-  components: {
-    PasswordInput
-  },
-  setup() {
-    const { notify } = useQuasar()
+const { notify } = useQuasar()
 
-    const name = ref<string>('')
-    const bornDate = ref<string>('')
-    const gender = ref<string>('')
-    const term = ref<boolean>(false)
-    const password = ref<string>('')
+const name = ref('')
+const bornDate = ref('')
+const gender = ref('')
+const term = ref(false)
+const password = ref('')
 
-    const onSave = () => {
-      if (name.value  === '') {
-        notify({
-          message: 'Campo está vazio.',
-          type: 'negative'
-        })
-      } else {
-        notify({
-          message: `${name.value} salvo com sucesso.`,
-          type: 'positive'
-        })
-      }
-    }
-
-    return {
-      name,
-      bornDate,
-      gender,
-      term,
-      password,
-      onSave
-    }
+ function onSave() {
+  if (!name.value || !bornDate.value || !gender.value || !term.value || !password.value){
+    notify({
+      message: 'Campo está vazio.',
+      type: 'negative'
+    })
+  } else {
+    notify({
+      message: `${name.value} salvo com sucesso.`,
+      type: 'positive'
+    })
   }
-})
+}
 </script>
-
