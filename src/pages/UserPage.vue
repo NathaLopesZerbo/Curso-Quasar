@@ -1,5 +1,5 @@
 <template>
-  <q-page padding>
+  <q-page padding class="teste">
     <q-form class="q-gutter-md flex column"> 
       <q-input v-model="name" label="Nome" filled />
 
@@ -61,3 +61,4 @@ const password = ref('')
   }
 }
 </script>
+
