@@ -5,15 +5,16 @@
         <q-toolbar-title>
           Teste
         </q-toolbar-title>
-        <q-btn :label="name" icon="person" rounded flat/>
+        <q-btn :label="name" icon="person" rounded flat>
         <q-menu>
           <q-list>
             <q-item>
-              <q-btn label="Sair" @click="authStore.logout"/>
-              
+              <q-btn label="Sair" @click="authStore.logout()"/>
+
             </q-item>
           </q-list>
         </q-menu>
+      </q-btn>
       </q-toolbar>
     </q-header>
 

@@ -5,7 +5,8 @@
       active
       :todos="todos"
       :meta="meta"
-    ></example-component>
+    >
+  </example-component>
     <q-btn to="user"/>
   </q-page>
 </template>
@@ -13,15 +14,10 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import type { Todo, Meta } from 'components/models';
-import ExampleComponent from 'components/ExampleComponent.vue';
 
 
 export default defineComponent({
   name: 'IndexPage',
-
-  components: {
-    ExampleComponent,
-	},
 
   setup () {
     const todos = ref<Todo[]>([
